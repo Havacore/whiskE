@@ -1,21 +1,29 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../core/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
   template: `
-<h3>Sup Bud</h3>
-  <p>Login to get started...</p>
+    <h3>Sup Bud</h3>
+    <p>Login to get started...</p>
 
-  <button (click)="auth.googleLogin()">
+    <button (click)="login()">
       <i class="fa fa-google"></i> Connect Google
-  </button>
-`,
+    </button>
+  `,
   styleUrls: []
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  constructor(
-    private auth: AuthService
-  ) {}
+  constructor(private auth: AuthService,
+              private router: Router) {
+  }
+
+  ngOnInit() {
+  }
+
+  private login(): void {
+    this.auth.googleLogin();
+  }
 }

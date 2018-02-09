@@ -15,6 +15,7 @@ interface User {
 @Injectable()
 export class AuthService {
   user: Observable<User>;
+  private isLoggedIn: boolean;
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
               private router: Router) {
@@ -22,12 +23,24 @@ export class AuthService {
       this.user = this.afAuth.authState
         .switchMap(user => {
           if (user) {
+            this.isLoggedIn = true;
+            this.router.navigateByUrl('/dashboard');
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
           } else {
+            this.isLoggedIn = false;
             return Observable.of(null);
           }
         });
   }
+
+  set loggedIn(isLoggedIn) {
+    this.isLoggedIn = isLoggedIn;
+  }
+
+  get loggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
@@ -35,7 +48,9 @@ export class AuthService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
+        this.isLoggedIn = true;
         this.updateUserData(credential.user);
+        this.router.navigateByUrl('/dashboard');
       });
   }
   private updateUserData(user) {
@@ -51,7 +66,7 @@ export class AuthService {
   }
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-        this.router.navigate(['/']);
+        this.router.navigateByUrl('/login');
     });
   }
 }
