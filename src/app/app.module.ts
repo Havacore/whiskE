@@ -6,6 +6,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import {environment} from './../environments/environment';
+import {CoreModule} from './core/core.module';
+import {LoginModule} from './login/login.module';
+import {AppRoutingModule} from './routing.module';
+import {DashboardModule} from './dashboard/dashboard.module';
 
 
 @NgModule({
@@ -16,7 +20,11 @@ import {environment} from './../environments/environment';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    CoreModule,
+    LoginModule,
+    AppRoutingModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,30 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   template: `
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="https://whiskyshow.com/images/media/50117ca2e3c6af4eeb72289fc477d743.jpg">
-  <input id="testInput">
-  <a (click)="saveThing()" class="button">Save a Thing</a>
-  <div class="test-container">
-    <ul *ngFor="let thing of testDocuments$ | async">
-      <li>{{thing.name}}</li>
-    </ul>
-  </div>
+  <router-outlet></router-outlet>
 </div>`,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
   testDocuments$: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(
+    private router: Router,
+    private db: AngularFireDatabase
+  ) {}
 
   ngOnInit() {
     this.testDocuments$ = this.getTestDocuments();
@@ -40,7 +33,7 @@ export class AppComponent implements OnInit {
       return;
     }
     const id = this.uuidv4();
-    const testPerson: testDocument = {
+    const testPerson: TestDocument = {
       name: name,
       id: id
     };
@@ -55,7 +48,7 @@ export class AppComponent implements OnInit {
   }
 }
 
-interface testDocument  {
+interface TestDocument  {
   name: string;
   id: string;
 }
