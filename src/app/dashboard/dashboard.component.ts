@@ -1,7 +1,9 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../core/auth.service';
 import {Router} from '@angular/router';
+import { EventService } from './event-feed/event.service';
+import { Observable } from 'rxjs/Observable';
+import { WhiskyEvent } from './event-feed/event';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,16 +12,15 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  firstName: BehaviorSubject<string> = new BehaviorSubject<string>('');
-
   constructor(
-    private auth: AuthService
+    private eventService: EventService
   ) { }
 
   ngOnInit() {
-    this.auth.user.subscribe((thing) => {
-      this.firstName.next(thing.displayName);
-    });
+  }
+
+  get eventFeed$(): Observable<Array<WhiskyEvent>> {
+    return this.eventService.eventFeed$;
   }
 
 }
