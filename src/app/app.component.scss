@@ -23,5 +23,13 @@ header {
     .header__title {
         padding-right: 8px;
     }
+
+    .header__user-and-signout {
+        display:flex;
+
+        .header__user-container {
+            padding-right: 8px;
+        }
+    }
 }
 

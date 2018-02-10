@@ -11,9 +11,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService } from './core/auth.service';
+import { Observable } from 'rxjs/Observable';
 
 const dbStub = {
   list: jest.fn()
+};
+
+const authStub = {
+  signOut: jest.fn(() => undefined),
+  user: Observable.of({displayName: 'Megaman'})
 };
 
 describe('AppComponent', () => {
@@ -34,6 +41,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         {provide: AngularFireDatabase, useValue: dbStub},
+        {provide: AuthService, useValue: authStub},
         {provide: Router, useValue: RouterTestingModule}
       ]
     }).compileComponents();
@@ -44,9 +52,21 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('shoud display the logged in user in the navbar', async(() => {
+  it('should login the user on init', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(true).toBe(true);
-  }));
+    const app = fixture.componentInstance;
+    app.getUser();
+    app.displayName.subscribe(name => expect(name).toBe('Megaman'));
+  });
+
+
+  describe('logout', () => {
+    it('should logout the user', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      app.logout();
+      app.displayName.subscribe(name => expect(name).toBe(''));
+    });
+  });
+
 });

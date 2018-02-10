@@ -1,3 +1,5 @@
+import { BehaviorSubject } from 'rxjs/Rx';
+import { AuthService } from './core/auth.service';
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
@@ -14,7 +16,10 @@ import {Router} from '@angular/router';
         <input id="search-box">
       </div>
     </div>
-    <div class="header__user-container">Jason Dahl</div>
+    <div class="header__user-and-signout">
+      <div class="header__user-container">{{ displayName | async }}</div>
+      <a href="#" (click)="logout()">Sign Out</a>
+    </div>
   </div>
   </header>
   <router-outlet></router-outlet>
@@ -23,15 +28,31 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   testDocuments$: Observable<any[]>;
+  displayName: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
     private router: Router,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
     this.testDocuments$ = this.getTestDocuments();
+    this.auth.user.subscribe((thing) => {
+      this.displayName.next(thing.displayName);
+    });
   }
+
+  getUser(): void {
+    this.auth.user.subscribe((thing) => {
+      this.displayName.next(thing.displayName);
+    });
+  }
+
+  logout(): void {
+    this.auth.signOut();
+  }
+
 
   getTestDocuments(): Observable<any[]> {
     return this.db.list('/testDocument').valueChanges();
