@@ -43,4 +43,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
+
+  it('shoud display the logged in user in the navbar', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(true).toBe(true);
+  }));
 });

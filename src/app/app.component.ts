@@ -6,10 +6,12 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-root',
   template: `
-<div style="text-align:center">
+  <header>
+
+  </header>
   <router-outlet></router-outlet>
-</div>`,
-  styleUrls: ['./app.component.css']
+`,
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   testDocuments$: Observable<any[]>;
