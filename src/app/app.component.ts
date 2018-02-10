@@ -7,7 +7,15 @@ import {Router} from '@angular/router';
   selector: 'app-root',
   template: `
   <header>
-
+  <div class="header__content">
+    <div class="header__title-and-search">
+      <div class="header__title">🥃    WhiskE</div>
+      <div>
+        <input id="search-box">
+      </div>
+    </div>
+    <div class="header__user-container">Jason Dahl</div>
+  </div>
   </header>
   <router-outlet></router-outlet>
 `,
