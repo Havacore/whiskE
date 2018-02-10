@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../core/auth.service';
 import {Router} from '@angular/router';
@@ -9,15 +10,15 @@ import {Router} from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+  firstName: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   constructor(
-    private router: Router,
     private auth: AuthService
   ) { }
 
   ngOnInit() {
-    console.log(this.auth.user);
     this.auth.user.subscribe((thing) => {
-      console.log(thing);
+      this.firstName.next(thing.displayName);
     });
   }
 
