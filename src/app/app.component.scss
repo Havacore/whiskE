@@ -1,6 +1,9 @@
+
+@import '~sass/colors.scss';
+
 header {
     
-    background-color: lightgray;
+    background-color: $primaryBackground;
     
     padding: 12px 0;
     z-index: 10;
@@ -29,7 +32,34 @@ header {
 
         .header__user-container {
             padding-right: 8px;
+            position: relative;
         }
     }
 }
 
+.header__user-dropdown {
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: $secondaryBackground;
+    top: 30px;
+    border-radius: 4px;
+
+
+    .dropdown-item {
+        height: 20px;
+        padding: 8px;
+        border-bottom: 1px solid black;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $secondaryLight;
+        }
+        
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}

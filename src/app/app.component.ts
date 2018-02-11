@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AuthService } from './core/auth.service';
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
@@ -17,8 +17,13 @@ import {Router} from '@angular/router';
       </div>
     </div>
     <div class="header__user-and-signout">
-      <div class="header__user-container">{{ displayName | async }}</div>
-      <a href="#" (click)="logout()">Sign Out</a>
+      <div class="header__user-container">
+        <a class="jbutton" (click)="toggleUserDropdown()">{{ displayName$$ | async }}</a>
+        <div class="header__user-dropdown" [ngClass]="{ 'hidden': !dropDownToggled }">
+          <a class="dropdown-item">Create Event</a>
+          <a class="dropdown-item" (click)="logout()">Sign Out</a>
+        </div>
+      </div>
     </div>
   </div>
   </header>
@@ -28,7 +33,9 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   testDocuments$: Observable<any[]>;
-  displayName: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  displayName$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  dropDownToggled = false;
 
   constructor(
     private router: Router,
@@ -39,14 +46,18 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.testDocuments$ = this.getTestDocuments();
     this.auth.user.subscribe((thing) => {
-      this.displayName.next(thing.displayName);
+      this.displayName$$.next(thing.displayName);
     });
   }
 
   getUser(): void {
     this.auth.user.subscribe((thing) => {
-      this.displayName.next(thing.displayName);
+      this.displayName$$.next(thing.displayName);
     });
+  }
+
+  toggleUserDropdown(): void {
+    this.dropDownToggled = !this.dropDownToggled;
   }
 
   logout(): void {

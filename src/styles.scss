@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'sass/colors.scss';
+
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -12,6 +15,20 @@ body {
 }
 
 .jcard {
-    border: 1px solid #DBDBDB;
+    border: 1px solid $happyLightGray;
     border-radius: 4px;
+}
+
+.jbutton {
+    background-color: $primaryLight;
+    padding: 4px 8px;
+    border-radius: 4px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.hidden {
+    display: none !important;
 }
