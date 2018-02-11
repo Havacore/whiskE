@@ -12,7 +12,8 @@ import { Observable } from 'rxjs/Observable';
           <img [src]="event.imageUrl" />
       </div>
       <div class="feed-card__description">
-        {{ event.description }}
+        <h2>{{ event.whiskyName }}</h2>
+        <div>{{ event.description }}</div>
       </div>
     </div>
   </div>
