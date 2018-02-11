@@ -20,12 +20,17 @@ import { Component, OnInit } from '@angular/core';
         <label for="imageUrl">Image URL</label>
         <input type="text" class="form-control" id="imageUrl" [(ngModel)]="event.imageUrl" name="imageUrl">
       </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" [(ngModel)]="event.date" name="date">
+      </div>
       <button type="submit" class="jbutton">Submit</button>
     </form>
-    name: {{event.whiskyName}}
-    description: {{event.description}}
-    id: {{event.id}}
-    imageUrl: {{event.imageUrl}}
+    name: {{event.whiskyName}} \n
+    description: {{event.description}}\n
+    id: {{event.id}}\n
+    imageUrl: {{event.imageUrl}}\n
+    date: {{event.date}}\n
   </div>
 
   `,
@@ -37,7 +42,8 @@ export class CreateEventComponent implements OnInit {
     id: '',
     whiskyName: '',
     description: '',
-    imageUrl: ''
+    imageUrl: '',
+    date: ''
   };
 
   constructor(

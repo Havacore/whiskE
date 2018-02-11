@@ -1,9 +1,11 @@
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../core/auth.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
 import { EventService } from './event-feed/event.service';
+import { EventFeedComponent } from './event-feed/event-feed.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -19,10 +21,12 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ],
+      declarations: [ DashboardComponent, EventFeedComponent ],
       providers: [
-        {provide: AuthService, useValue: AuthServiceStub},
         {provide: EventService, useValue: EventServiceStub}
+      ],
+      imports: [
+        AngularFirestoreModule
       ]
     })
     .compileComponents();

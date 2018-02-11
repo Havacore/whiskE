@@ -1,3 +1,4 @@
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
@@ -6,7 +7,8 @@ import { EventService } from './event-feed/event.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AngularFirestoreModule
   ],
   declarations: [DashboardComponent, EventFeedComponent],
   providers: [EventService]
