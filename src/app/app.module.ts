@@ -1,3 +1,4 @@
+import { CreateEventModule } from './create-event/create-event.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
@@ -24,7 +25,8 @@ import {DashboardModule} from './dashboard/dashboard.module';
     CoreModule,
     LoginModule,
     AppRoutingModule,
-    DashboardModule
+    DashboardModule,
+    CreateEventModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { CreateEventComponent } from './create-event/create-event.component';
 import {AppComponent} from './app.component';
 import {AuthGuard} from './core/auth.guard';
 import {NgModule} from '@angular/core';
@@ -8,6 +9,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 const ROUTES: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'dashboard', component: DashboardComponent},
+  { path: 'create-event', component: CreateEventComponent},
   { path: 'login', component: LoginComponent},
   { path: '**', component: LoginComponent, canActivate: [AuthGuard]}
 ];

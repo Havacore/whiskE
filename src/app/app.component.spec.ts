@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from './core/auth.service';
 import { Observable } from 'rxjs/Observable';
+import { CreateEventModule } from './create-event/create-event.module';
 
 const dbStub = {
   list: jest.fn()
@@ -21,6 +22,10 @@ const dbStub = {
 const authStub = {
   signOut: jest.fn(() => undefined),
   user: Observable.of({displayName: 'Megaman'})
+};
+
+const routerStub = {
+  navigateByUrl: jest.fn(() => undefined)
 };
 
 describe('AppComponent', () => {
@@ -37,12 +42,13 @@ describe('AppComponent', () => {
         CoreModule,
         LoginModule,
         RouterTestingModule,
-        DashboardModule
+        DashboardModule,
+        CreateEventModule
       ],
       providers: [
         {provide: AngularFireDatabase, useValue: dbStub},
         {provide: AuthService, useValue: authStub},
-        {provide: Router, useValue: RouterTestingModule}
+        {provide: Router, useValue: routerStub}
       ]
     }).compileComponents();
   }));
@@ -56,7 +62,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     app.getUser();
-    app.displayName.subscribe(name => expect(name).toBe('Megaman'));
+    app.displayName$$.subscribe(name => expect(name).toBe('Megaman'));
   });
 
 
@@ -65,7 +71,32 @@ describe('AppComponent', () => {
       const fixture = TestBed.createComponent(AppComponent);
       const app = fixture.debugElement.componentInstance;
       app.logout();
-      app.displayName.subscribe(name => expect(name).toBe(''));
+      app.displayName$$.subscribe(name => expect(name).toBe(''));
+    });
+
+    it('should close the dropdown', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      app.dropDownToggled = true;
+      app.logout();
+      expect(app.dropDownToggled).toBeFalsy();
+    });
+  });
+
+  describe('goTo', () => {
+    it('should go to the sepecified location', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      app.goTo('location');
+      expect(app.router.navigateByUrl).toHaveBeenCalledWith('location');
+    });
+
+    it('should close the dropdown', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      app.dropDownToggled = true;
+      app.goTo('location');
+      expect(app.dropDownToggled).toBeFalsy();
     });
   });
 

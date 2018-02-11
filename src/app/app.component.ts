@@ -17,10 +17,10 @@ import {Router} from '@angular/router';
       </div>
     </div>
     <div class="header__user-and-signout">
-      <div class="header__user-container">
-        <a class="jbutton" (click)="toggleUserDropdown()">{{ displayName$$ | async }}</a>
+      <div class="header__user-container" *ngIf="displayName$$ | async as displayName">
+        <a class="jbutton" (click)="toggleUserDropdown()">{{ displayName }}</a>
         <div class="header__user-dropdown" [ngClass]="{ 'hidden': !dropDownToggled }">
-          <a class="dropdown-item">Create Event</a>
+          <a class="dropdown-item" (click)="goTo('create-event')">Create Event</a>
           <a class="dropdown-item" (click)="logout()">Sign Out</a>
         </div>
       </div>
@@ -61,7 +61,13 @@ export class AppComponent implements OnInit {
   }
 
   logout(): void {
+    this.dropDownToggled = false;
     this.auth.signOut();
+  }
+
+  goTo(destination: string): void {
+    this.router.navigateByUrl(destination);
+    this.dropDownToggled = false;
   }
 
 
