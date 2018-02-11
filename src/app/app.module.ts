@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { CreateEventModule } from './create-event/create-event.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,7 +27,8 @@ import {DashboardModule} from './dashboard/dashboard.module';
     LoginModule,
     AppRoutingModule,
     DashboardModule,
-    CreateEventModule
+    CreateEventModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

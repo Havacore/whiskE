@@ -12,7 +12,8 @@
       "node_modules/@types"
     ],
     "types": [
-      "jest"
+      "jest",
+      "uuid"
     ],
     "lib": [
       "es2017",

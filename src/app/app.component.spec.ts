@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from './../environments/environment.prod';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -43,7 +44,8 @@ describe('AppComponent', () => {
         LoginModule,
         RouterTestingModule,
         DashboardModule,
-        CreateEventModule
+        CreateEventModule,
+        FormsModule
       ],
       providers: [
         {provide: AngularFireDatabase, useValue: dbStub},

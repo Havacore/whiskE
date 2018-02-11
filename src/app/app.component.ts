@@ -45,9 +45,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.testDocuments$ = this.getTestDocuments();
-    this.auth.user.subscribe((thing) => {
-      this.displayName$$.next(thing.displayName);
-    });
+    this.getUser();
   }
 
   getUser(): void {
