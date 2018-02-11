@@ -13,8 +13,8 @@ export class CreateEventService {
 
   public saveEvent(event: WhiskyEvent) {
 
-    const id = event.id === '' ? uuid() : event.id;
-    this.db.database.ref('/whiskyEvent/' + id).set(event);
+    event.id = event.id === '' ? 'whisky-' + uuid() : event.id;
+    this.db.database.ref('/whiskyEvent/' + event.id).set(event);
   }
 
 }
