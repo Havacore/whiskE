@@ -7,7 +7,12 @@ import { WhiskyEvent } from './event-feed/event';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  template: `
+<div class="feed-container">
+  <h1>Latest Whisky Tastings</h1>
+  <app-event-feed></app-event-feed>
+</div>
+`,
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {

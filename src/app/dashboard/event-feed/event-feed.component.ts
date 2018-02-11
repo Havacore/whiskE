@@ -1,15 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { EventService } from './event.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { WhiskyEvent } from './event';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-event-feed',
-  templateUrl: './event-feed.component.html',
+  template: `
+  <div *ngFor="let event of events$ | async">
+    <div class="jcard feed-card">
+      <div class="feed-card__picture">
+          <img [src]="event.imageUrl" />
+      </div>
+      <div class="feed-card__description">
+        {{ event.description }}
+      </div>
+    </div>
+  </div>
+`,
   styleUrls: ['./event-feed.component.scss']
 })
 export class EventFeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private eventService: EventService
+  ) { }
 
   ngOnInit() {
+  }
+
+  get events$(): Observable<Array<WhiskyEvent>> {
+    return this.eventService.eventFeed$;
   }
 
 }

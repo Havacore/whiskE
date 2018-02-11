@@ -22,4 +22,6 @@ describe('EventFeedComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
 });

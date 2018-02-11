@@ -1,3 +1,15 @@
 .feed-card {
     width: 400px;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 8px;
+    padding: 8px;
+
+    .feed-card__picture {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
 }
