@@ -3,7 +3,6 @@ import { CreateEventModule } from './create-event/create-event.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
@@ -12,6 +11,7 @@ import {CoreModule} from './core/core.module';
 import {LoginModule} from './login/login.module';
 import {AppRoutingModule} from './routing.module';
 import {DashboardModule} from './dashboard/dashboard.module';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     AngularFireAuthModule,
     CoreModule,
     LoginModule,

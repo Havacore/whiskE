@@ -1,15 +1,14 @@
+import { AngularFirestore } from 'angularfire2/firestore';
 import { WhiskyEvent } from './../dashboard/event-feed/event';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { CreateEventService } from './create-event.service';
+import { Observable } from 'rxjs/Observable';
 
 const angularFireDBMock = {
-  database: {
-    ref: jest.fn(() => {
-      return { set: jest.fn(() => undefined)};
-      })
-  }
+  collection: jest.fn(() => {
+    return { add: jest.fn() };
+  })
 };
 
 const eventWithoutUUID: WhiskyEvent = {
@@ -31,7 +30,7 @@ describe('CreateEventService', () => {
     TestBed.configureTestingModule({
       providers: [
         CreateEventService,
-        {provide: AngularFireDatabase, useValue: angularFireDBMock}
+        {provide: AngularFirestore, useValue: angularFireDBMock}
       ]
     });
   });
@@ -40,15 +39,14 @@ describe('CreateEventService', () => {
     expect(service).toBeTruthy();
   }));
 
-  describe('saveEvent', () => {
-    it('should generate a uuid for the event if there isn\'t one', inject([CreateEventService], (service: CreateEventService) => {
-      service.saveEvent(eventWithoutUUID);
-      expect(service.db.database.ref).toHaveBeenCalled();
-    }));
 
-    it('should use the uuid on the event object if there is one', inject([CreateEventService], (service: CreateEventService) => {
-      service.saveEvent(eventWithUUID);
-      expect(service.db.database.ref).toHaveBeenCalledWith('/whiskyEvent/uid-123');
-    }));
-  });
+  it('should generate a uuid for the event if there isn\'t one', inject([CreateEventService], (service: CreateEventService) => {
+    service.saveEvent(eventWithoutUUID);
+    expect(service.eventCollection.add).toHaveBeenCalled();
+  }));
+
+  it('should use the uuid on the event object if there is one', inject([CreateEventService], (service: CreateEventService) => {
+    service.saveEvent(eventWithUUID);
+    expect(service.eventCollection.add).toHaveBeenCalledWith(eventWithUUID);
+  }));
 });

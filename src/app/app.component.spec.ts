@@ -1,3 +1,4 @@
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from './../environments/environment.prod';
@@ -6,7 +7,7 @@ import { AppRoutingModule } from './routing.module';
 import { LoginModule } from './login/login.module';
 import { CoreModule } from './core/core.module';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { BrowserModule } from '@angular/platform-browser';
 import { TestBed, async } from '@angular/core/testing';
@@ -38,7 +39,7 @@ describe('AppComponent', () => {
       imports: [
         BrowserModule,
         AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule,
+        AngularFirestoreModule,
         AngularFireAuthModule,
         CoreModule,
         LoginModule,

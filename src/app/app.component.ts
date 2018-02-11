@@ -1,7 +1,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { AuthService } from './core/auth.service';
 import {Component, OnInit} from '@angular/core';
-import {AngularFireDatabase} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 
@@ -32,19 +31,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  testDocuments$: Observable<any[]>;
   displayName$$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   dropDownToggled = false;
 
   constructor(
     private router: Router,
-    private db: AngularFireDatabase,
     private auth: AuthService
   ) {}
 
   ngOnInit() {
-    this.testDocuments$ = this.getTestDocuments();
     this.getUser();
   }
 
@@ -68,10 +64,6 @@ export class AppComponent implements OnInit {
     this.dropDownToggled = false;
   }
 
-
-  getTestDocuments(): Observable<any[]> {
-    return this.db.list('/testDocument').valueChanges();
-  }
 
   // saveThing(): void {
   //   const name = document.getElementById('testInput').value;
