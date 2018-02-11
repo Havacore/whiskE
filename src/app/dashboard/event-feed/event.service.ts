@@ -1,7 +1,8 @@
-import { BehaviorSubject } from 'rxjs/Rx';
+
 import { Injectable } from '@angular/core';
 import { WhiskyEvent } from './event';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const bogusEvent: WhiskyEvent = {
   id: 'event-123'

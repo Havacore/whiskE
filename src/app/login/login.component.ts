@@ -5,12 +5,14 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   template: `
-    <h3>Sup Bud</h3>
-    <p>Login to get started...</p>
+    <div class="main-container">
+      <h3>Sup Bud</h3>
+      <p>Login to get started...</p>
 
-    <button (click)="login()">
-      <i class="fa fa-google"></i> Connect Google
-    </button>
+      <button (click)="login()">
+        <i class="fa fa-google"></i> Connect Google
+      </button>
+    </div>
   `,
   styleUrls: []
 })
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  private login(): void {
+  login(): void {
     this.auth.googleLogin();
   }
 }

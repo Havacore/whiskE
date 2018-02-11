@@ -1,4 +1,7 @@
 <div class="feed-container">
     <h1>Latest Whisky Tastings</h1>
+    <div class="event-feed" *ngFor="let e of eventFeed$ | async">
+        <app-event-feed></app-event-feed>
+    </div>
 </div>
 
