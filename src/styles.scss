@@ -29,6 +29,54 @@ body {
     }
 }
 
+button.jbutton {
+    background-color: $primaryDark;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border-style: none;
+    margin: 8px 0;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $secondaryDark;
+    }
+}
+
 .hidden {
     display: none !important;
+}
+
+// FORMS!!!
+.form-group {
+    display: flex;
+    margin: 8px 0;
+
+    label {
+        width: 15%;
+    }
+    input {
+        width: 30%;
+        border: 1px solid $happyLightGray;
+        line-height: 20px;
+        font-size: 18px;
+        font-family: "Roboto";
+        padding: 8px;
+    }
+    textarea {
+        width: 31.8%;
+        padding: 8px;
+        min-height: 100px;
+        font-size: 16px;
+        -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+        -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+        box-sizing: border-box;
+
+        vertical-align: top;
+        resize: none;
+        overflow: auto;
+
+        border: 1px solid $happyLightGray;
+
+        font-family: "Roboto";
+    }
 }

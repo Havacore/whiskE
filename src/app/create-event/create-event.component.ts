@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="name">Whisky Name</label>
-        <input type="text" class="form-control" id="name" [(ngModel)]="event.whiskyName" name="name">
+        <input type="text" class="form-control" id="name" [(ngModel)]="event.whiskyName" name="name" placeholder="'Jake Daniels'">
       </div>
       <div class="form-group">
         <label for="description">Description</label>
@@ -26,11 +26,6 @@ import { Component, OnInit } from '@angular/core';
       </div>
       <button type="submit" class="jbutton">Submit</button>
     </form>
-    name: {{event.whiskyName}} \n
-    description: {{event.description}}\n
-    id: {{event.id}}\n
-    imageUrl: {{event.imageUrl}}\n
-    date: {{event.date}}\n
   </div>
 
   `,

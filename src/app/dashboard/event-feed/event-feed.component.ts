@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
       </div>
       <div class="feed-card__description">
         <h2>{{ event.whiskyName }}</h2>
+        <h3 [innerHTML]="formatDate(event.date)"></h3>
         <div>{{ event.description }}</div>
       </div>
     </div>
@@ -27,6 +28,13 @@ export class EventFeedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  formatDate(datestring: string): string {
+    const monthNames =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'];
+    const date = new Date(datestring);
+    return monthNames[date.getUTCMonth()] + ' ' + date.getUTCDate() + ', ' + date.getUTCFullYear() ;
   }
 
   get events$(): Observable<Array<WhiskyEvent>> {

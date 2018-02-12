@@ -32,5 +32,12 @@ describe('EventFeedComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('formatDate', () => {
+    it('should format the date to a pretty date from the y/m/d version', () => {
+      const expected = 'February 20, 2018';
+      const result = component.formatDate('2018-02-20');
+      expect(result).toBe(expected);
+    });
+  });
 
 });

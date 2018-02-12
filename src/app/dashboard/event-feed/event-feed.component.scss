@@ -7,9 +7,20 @@
     padding: 8px;
 
     .feed-card__picture {
+        width: 30%;
         img {
             width: 100%;
             height: auto;
+        }
+    }
+
+    .feed-card__description {
+        width: 70%;
+        h2 {
+            margin-bottom: 0;
+        }
+        h3 {
+            margin-top: 0;
         }
     }
 }
