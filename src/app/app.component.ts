@@ -46,7 +46,11 @@ export class AppComponent implements OnInit {
 
   getUser(): void {
     this.auth.user.subscribe((thing) => {
-      this.displayName$$.next(thing.displayName);
+      if (thing && thing.hasOwnProperty('displayName')) {
+        this.displayName$$.next(thing.displayName);
+      } else {
+        this.displayName$$.next('Welcome');
+      }
     });
   }
 

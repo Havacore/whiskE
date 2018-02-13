@@ -25,7 +25,6 @@ const emptyEvent: WhiskyEvent = {
 @Injectable()
 export class EventService {
 
-  eventFeed$$: BehaviorSubject<Array<WhiskyEvent>> = new BehaviorSubject<Array<WhiskyEvent>>([emptyEvent]);
   eventCollection: AngularFirestoreCollection<WhiskyEvent>;
   eventCollection$: Observable<Array<WhiskyEvent>>;
 
@@ -38,7 +37,6 @@ export class EventService {
   initializeEventFeed(): void {
     this.eventCollection = this.db.collection('whiskyEvent', ref => ref.orderBy('date'));
     this.eventCollection$ = this.eventCollection.valueChanges();
-    this.eventCollection$.forEach(thing => console.log(thing));
   }
 
   get eventFeed$(): Observable<Array<WhiskyEvent>> {

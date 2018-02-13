@@ -68,6 +68,16 @@ describe('AppComponent', () => {
     app.displayName$$.subscribe(name => expect(name).toBe('Megaman'));
   });
 
+  it('should display a welcome message if there is no user', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const unAuthedService = {
+      user: Observable.of({})
+    };
+    app.auth = unAuthedService;
+    app.getUser();
+    app.displayName$$.subscribe(name => expect(name).toBe('Welcome'));
+  });
 
   describe('logout', () => {
     it('should logout the user', () => {

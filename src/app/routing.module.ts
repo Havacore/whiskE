@@ -8,8 +8,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'create-event', component: CreateEventComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: []},
+  { path: 'create-event', component: CreateEventComponent, canActivate: []},
   { path: 'login', component: LoginComponent},
   { path: '**', component: LoginComponent, canActivate: [AuthGuard]}
 ];
