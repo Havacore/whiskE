@@ -1,11 +1,13 @@
 // FORMS!!!
 .form-group {
-    display: flex;
-    margin: 8px 0;
 
-    label {
+  display: flex;
+  margin: 8px 0;
+
+  label {
         width: 15%;
     }
+
     input {
         width: 30%;
         border: 1px solid $happyLightGray;
@@ -14,6 +16,7 @@
         font-family: "Roboto";
         padding: 8px;
     }
+
     textarea {
         width: 31.8%;
         padding: 8px;

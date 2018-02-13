@@ -8,6 +8,7 @@
     "build": "ng build --prod",
     "test": "jest",
     "test:watch": "jest --watch",
+    "scsslint": "./node_modules/sass-lint/bin/sass-lint.js -c /sass-lint.yml -v -q",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -45,6 +46,8 @@
     "jest": "^22.2.2",
     "jest-preset-angular": "^5.0.0",
     "jest-zone-patch": "0.0.8",
+    "sass-lint": "^1.12.1",
+    "stylelint": "^8.4.0",
     "ts-jest": "^22.0.3",
     "tslint": "^5.9.1",
     "typescript": "~2.4.1"
@@ -77,6 +80,25 @@
     ],
     "globals": {
       "__TRANSFORM_HTML__": true
+    }
+  },
+  "stylelint": {
+    "rules": {
+      "block-no-empty": null,
+      "color-no-invalid-hex": true,
+      "comment-empty-line-before": [ "always", {
+        "ignore": ["stylelint-commands", "after-comment"]
+      } ],
+      "declaration-colon-space-after": "always",
+      "indentation": ["space", {
+        "except": ["value"]
+      }],
+      "max-empty-lines": 2,
+      "rule-empty-line-before": [ "always", {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      } ],
+      "unit-whitelist": ["px", "%", "s"]
     }
   }
 }
