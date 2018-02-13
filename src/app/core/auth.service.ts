@@ -27,7 +27,7 @@ export class AuthService {
       .switchMap(user => {
         if (user) {
           this.isLoggedIn = true;
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigate(['dashboard']);
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           this.isLoggedIn = false;
@@ -35,6 +35,10 @@ export class AuthService {
         }
       });
   }
+
+  get currentUserObservable(): any {
+  return this.afAuth.auth;
+}
 
   set loggedIn(isLoggedIn) {
     this.isLoggedIn = isLoggedIn;
