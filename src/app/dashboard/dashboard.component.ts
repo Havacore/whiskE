@@ -8,10 +8,8 @@ import { WhiskyEvent } from './event-feed/event';
 @Component({
   selector: 'app-dashboard',
   template: `
-<div class="feed-container">
-  <h1>Latest Whisky Tastings</h1>
+  <h1 class="col-4">Latest Whisky Tastings</h1>
   <app-event-feed></app-event-feed>
-</div>
 `,
   styleUrls: ['./dashboard.component.scss']
 })

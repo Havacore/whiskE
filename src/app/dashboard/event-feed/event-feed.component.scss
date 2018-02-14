@@ -1,10 +1,10 @@
 .feed-card {
-    width: 500px;
     display: flex;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 8px;
     padding: 8px;
+    box-sizing: border-box;
 
     .feed-card__picture {
         width: 30%;

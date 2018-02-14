@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-event-feed',
   template: `
   <div *ngFor="let event of events$ | async">
-    <div class="jcard feed-card">
+    <div class="jcard feed-card col-4">
       <div class="feed-card__picture">
           <img [src]="event.imageUrl" />
       </div>

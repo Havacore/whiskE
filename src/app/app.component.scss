@@ -42,14 +42,13 @@ header {
     z-index: 20;
     display: flex;
     flex-direction: column;
-    width: 150px;
     background-color: $secondaryBackground;
     top: 30px;
     border-radius: 4px;
+    left: -2px;
 
 
     .dropdown-item {
-        height: 20px;
         padding: 8px;
         border-bottom: 1px solid black;
 
