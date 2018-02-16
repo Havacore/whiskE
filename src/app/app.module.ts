@@ -14,11 +14,13 @@ import {LoginModule} from './login/login.module';
 import {AppRoutingModule} from './routing.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,

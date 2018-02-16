@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreadcrumbComponent should display the one breadcrumb passed in 1`] = `
+<app-breadcrumb
+  crumbs={[Function Array]}
+>
+  
+      <div>
+    
+        
+    <div>
+      Dashboard
+    </div>
+    
+      
+  </div>
+    
+</app-breadcrumb>
+`;
