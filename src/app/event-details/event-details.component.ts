@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { EventDetailsService } from './event-details.service';
 import { Component, OnInit } from '@angular/core';
 import { WhiskyEvent } from '../dashboard/event-feed/event';
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'app-event-details',
   template: `
   <div *ngIf="eventDetails$ | async as eventDetails; else loading">
-    Here is some whisky
+    {{eventDetails.whiskyName}}
   </div>
   <ng-template #loading>
     Loading...
@@ -17,9 +18,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EventDetailsComponent implements OnInit {
 
-  constructor(private eventService: EventDetailsService) { }
+  constructor(private eventService: EventDetailsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.eventService.loadEvent(this.route.snapshot.paramMap.get('eventId'));
   }
 
   get eventDetails$(): Observable<WhiskyEvent> {

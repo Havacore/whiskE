@@ -19,11 +19,11 @@ export class EventDetailsService {
   event$$: BehaviorSubject<WhiskyEvent> = new BehaviorSubject<WhiskyEvent>(bogusEvent);
 
   constructor(private db: AngularFirestore, private route: ActivatedRoute) {
-    this.loadEvent(this.route.snapshot.paramMap.get('eventId'));
   }
 
    loadEvent(eventId: string): void {
-    this.db.collection('whiskyEvent', ref => ref.where('eventId', '==', eventId)).valueChanges().subscribe((result: Array<WhiskyEvent>) => {
+    this.db.collection('whiskyEvent', ref => ref.where('id', '==', eventId)).valueChanges().subscribe((result: Array<WhiskyEvent>) => {
+      console.log(result);
       this.event$$.next(result[0]);
     });
    }

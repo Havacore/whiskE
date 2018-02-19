@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { EventDetailsService } from './event-details.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -8,14 +9,19 @@ describe('EventDetailsComponent', () => {
   let fixture: ComponentFixture<EventDetailsComponent>;
 
   const eventServiceStub = {
+    loadEvent: jest.fn(() => undefined)
+  };
 
+  const routeStub = {
+    snapshot: {paramMap: {get: jest.fn((id) => id)}}
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventDetailsComponent ],
       providers: [
-        {provide: EventDetailsService, useValue: eventServiceStub}
+        {provide: EventDetailsService, useValue: eventServiceStub},
+        {provide: ActivatedRoute, useValue: routeStub}
       ]
     })
     .compileComponents();
