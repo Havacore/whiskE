@@ -27,7 +27,6 @@ export class AuthService {
       .switchMap(user => {
         if (user) {
           this.isLoggedIn = true;
-          this.router.navigate(['dashboard']);
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           this.isLoggedIn = false;
@@ -58,7 +57,7 @@ export class AuthService {
       .then((credential) => {
         this.isLoggedIn = true;
         this.updateUserData(credential.user);
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigate(['/dashboard']);
       });
   }
 
@@ -76,7 +75,7 @@ export class AuthService {
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigateByUrl('/login');
+      this.router.navigate(['/login']);
     });
   }
 }

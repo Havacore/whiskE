@@ -8,14 +8,14 @@ import { Observable } from 'rxjs/Observable';
   template: `
   <div *ngFor="let event of events$ | async">
     <div class="jcard feed-card col-4">
-      <div class="feed-card__picture">
-          <img [src]="event.imageUrl" />
-      </div>
-      <div class="feed-card__description">
-        <h2>{{ event.whiskyName }}</h2>
-        <h3 [innerHTML]="formatDate(event.date)"></h3>
-        <div>{{ event.description }}</div>
-      </div>
+        <div class="feed-card__picture">
+            <img [src]="event.imageUrl" />
+        </div>
+        <div class="feed-card__description">
+          <h2>{{ event.whiskyName }}</h2>
+          <h3 [innerHTML]="formatDate(event.date)"></h3>
+          <div>{{ event.description }}</div>
+        </div>
     </div>
   </div>
 `,

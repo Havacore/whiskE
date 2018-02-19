@@ -1,3 +1,4 @@
+import { EventDetailsComponent } from './event-details/event-details.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import {AppComponent} from './app.component';
 import {AuthGuard} from './core/auth.guard';
@@ -8,8 +9,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
-  { path: 'dashboard', component: DashboardComponent, canActivate: []},
-  { path: 'create-event', component: CreateEventComponent, canActivate: []},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'create-event', component: CreateEventComponent, canActivate: [AuthGuard]},
+  { path: 'event/:eventId', component: EventDetailsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: '**', component: LoginComponent, canActivate: [AuthGuard]}
 ];

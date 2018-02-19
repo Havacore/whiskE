@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "serve": "ng serve",
+    "serve:prod": "ng build --prod && firebase serve",
     "build": "ng build --prod",
     "test": "jest",
     "test:watch": "jest --watch",
     "scsslint": "./node_modules/sass-lint/bin/sass-lint.js -c /sass-lint.yml -v -q",
+    "deploy:rules": "firebase deploy --only firestore:rules",
+    "deploy": "ng build --prod && firebase deploy",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

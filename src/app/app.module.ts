@@ -1,3 +1,4 @@
+import { EventDetailsModule } from './event-details/event-details.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,12 +28,13 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    // ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     CoreModule,
     LoginModule,
     AppRoutingModule,
     DashboardModule,
     CreateEventModule,
+    EventDetailsModule,
     FormsModule
   ],
   providers: [],

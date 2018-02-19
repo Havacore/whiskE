@@ -20,7 +20,8 @@ export class AuthGuard implements CanActivate {
                console.log('access denied');
                this.router.navigate(['login']);
              } else {
-               this.router.navigate(['dashboard']);
+               console.log('access granted');
+              //  this.router.navigate(['dashboard']);
              }
          });
   }
