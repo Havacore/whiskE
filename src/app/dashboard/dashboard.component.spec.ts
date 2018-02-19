@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../core/auth.service';
@@ -23,7 +24,8 @@ describe('DashboardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent, EventFeedComponent ],
       providers: [
-        {provide: EventService, useValue: EventServiceStub}
+        {provide: EventService, useValue: EventServiceStub},
+        {provide: Router, useValue: {}}
       ],
       imports: [
         AngularFirestoreModule
