@@ -9,7 +9,7 @@ export interface BreadCrumb {
   selector: 'app-breadcrumb',
   template: `
     <div *ngFor="let crumb of crumbs">
-      <div>{{crumb.name}}</div>
+      <a href="crum.url">{{crumb.name}}</a>
     </div>
   `,
   styleUrls: ['./breadcrumb.component.scss']

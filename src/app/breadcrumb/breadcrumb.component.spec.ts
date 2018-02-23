@@ -30,4 +30,5 @@ describe('BreadcrumbComponent', () => {
     expect(de.nativeElement.textContent).toContain('Dashboard');
     expect(fixture).toMatchSnapshot();
   });
+
 });
