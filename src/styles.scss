@@ -3,6 +3,7 @@
 @import 'sass/colors.scss';
 @import 'sass/forms.scss';
 @import 'sass/responsive.scss';
+@import 'sass/globals.scss';
 
 body {
     margin: 0;
@@ -10,13 +11,17 @@ body {
 }
 
 .main-container {
-    max-width: 980px;
+    max-width: $container-width;
     margin: 0 auto;
     width: 90%;
 }
 
 * {
     box-sizing: border-box;
+}
+
+img {
+  width: 100%;
 }
 
 .jcard {
@@ -43,7 +48,7 @@ button.jbutton {
 
     &:hover {
         cursor: pointer;
-        background-color: $secondaryDark;
+        background-color: $secondaryLight;
     }
 }
 
